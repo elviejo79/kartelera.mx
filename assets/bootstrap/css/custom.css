@@ -1,0 +1,47 @@
+body{
+	background: #34495e;
+	color: #FFFFFF;
+	font-size: 1em;
+}
+.blanco{
+	background: #FFFFFF;
+	padding: .625em 0;
+	width: 100%;
+	text-align: center;
+}
+.blanco a{
+	color: #34495e;
+	font-size: 2em;
+}
+.lista{
+
+}
+.lista{
+	
+}
+.movie{
+	height: 200px;
+	position: relative;
+	margin-bottom: 20px;
+}
+.movie span{
+	background-color: #1abc9c;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	line-height: 2em;
+	width: 100%;
+	text-align: center;
+}
+.views{
+	color: #34495e;
+	font-size: 2em;
+}
+.views .active{
+	color: #bdc3c7;
+}
+.space20{
+	margin: 20px 0;
+	width: 100%;
+}
