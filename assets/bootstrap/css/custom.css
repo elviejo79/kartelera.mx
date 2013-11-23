@@ -9,7 +9,7 @@ body{
 	width: 100%;
 	text-align: center;
 }
-.blanco a{
+.blanco .titulo{
 	color: #34495e;
 	font-size: 3em;
 }
@@ -49,10 +49,14 @@ body{
 	color: #bdc3c7;
 	font-size: 3em;
 }
-.views .active{
+.views a{
+	font-size: 1em;
+	color: #bdc3c7;
+}
+.views a .active{
 	color: #34495e;
 }
-.views span:hover{
+.views a :hover{
 	color: #34495e;
 	-webkit-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
