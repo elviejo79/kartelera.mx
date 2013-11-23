@@ -1,4 +1,5 @@
-package main
+
+package cinemex
 
 import(
 	"io/ioutil"
@@ -6,30 +7,30 @@ import(
 	"github.com/moovweb/gokogiri"
 //	"github.com/moovweb/gokogiri/html"
 	"github.com/moovweb/gokogiri/xml"
-	"github.com/gregjones/httpcache"
+//	"github.com/gregjones/httpcache"
 	"net/http"
 	"strconv"
 	"encoding/json"
 )
 
-func main(){
+
+func Screenings() (result []map[string]string){
 	theaters := extractTheaters("http://cinemex.com.mx/")
 	for _,t := range theaters {
-		//fmt.Println("http://cinemex.com.mx/cines/"+t.id)
-		if t.id == "4" || t.id=="54" || t.id=="199" {
-			movies, _ := extractMovies("http://cinemex.com.mx/cines/"+t.id)
-			for _,m := range movies {
-				fmt.Printf("cinemex,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
-					t.city, t.col,t.id,t.name,m[0],m[1],m[2],m[3],m[4],m[5])
-			}
+		movies, _ := extractMovies("http://cinemex.com.mx/cines/"+t.id)
+		for _,m := range movies {
+			result = append(result, map[string]string{
+				"cine":"cinemex" , "edo": t.city, "col":t.col , "cineId": t.id, "cineName":t.name, "title": m[0], "rating": m[1] , "language": m[2], "roomType": m[3], "date": m[4], "time":m[5]})
 		}
+
 	}
+	return
 }
 
 func extractTheaters(url string) (result []cine) {
 
 	html,_ := getBody(url)
-	doc, err := gokogiri.ParseHtml([]byte(html))
+	doc, err := gokogiri.ParseHtml(html)
 	if err !=nil {
 		fmt.Println(err)
 	}
@@ -44,26 +45,25 @@ func extractTheaters(url string) (result []cine) {
 		}
 	}
 
-	for c,edo := range cities {
-		if edo == "Zacatecas" || edo == "Aguascalientes" { //esto es para limitarlo sólo a 3 cines
-			url := fmt.Sprintf("http://cinemex.com.mx/getddCines.php?ciudad=%d&movieId=",c)
-			json_cines,_ := getBody(url)
-			theaters, _ := theaters_json_decoder(json_cines,cities[c])
-			result = append(result,theaters...)
-		}
-
+	for c,_ := range cities {
+		url := fmt.Sprintf("http://cinemex.com.mx/getddCines.php?ciudad=%d&movieId=",c)
+		json_cines,_ := getBody(url)
+		theaters, _ := theaters_json_decoder(json_cines,cities[c])
+		result = append(result,theaters...)
 	}
 	return result
 }
 
 
 func extractMovies(url string) (res [][]string, err error) {
-	html,_ := getBody(url)
-	doc, _ := gokogiri.ParseHtml([]byte(html))
+	html,err := getBody(url)
+	if err != nil {
+		fmt.Printf("%#v",err)
+	}
+	doc, _ := gokogiri.ParseHtml(html)
 	defer doc.Free()
 	movies,_ := doc.Search("id('sch-cont')/div");
 	for _, m := range movies{ 
-		//fmt.Printf("--- %#v",m)
 		row := []string{
 			nodeContent("div[@class='cinema']",m),
 			nodeContent("div[@style='width:35px;']",m),
@@ -90,8 +90,7 @@ func extractMovies(url string) (res [][]string, err error) {
 }
 
 func getBody(url string) (body []byte, err error) {
-	client := http.Client{Transport: httpcache.NewMemoryCacheTransport()}
-
+	client := http.Client{}
 	resp, err := client.Get(url)
         if err != nil {
                 return nil, err

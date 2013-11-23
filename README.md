@@ -1,4 +1,4 @@
 kartelera.mx
 ============
 
-Website that crawls movie thearers schedules and concentrates them
+Website that crawls movie theaters schedules and concentrates them
