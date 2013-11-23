@@ -1,7 +1,7 @@
 body{
 	background: #34495e;
 	color: #FFFFFF;
-	font-size: 1em;
+	font-size: .625%;
 }
 .blanco{
 	background: #FFFFFF;
@@ -16,32 +16,41 @@ body{
 .lista{
 
 }
-.lista{
-	
+.lista .thumbnail{
+	border-radius: 50%;
+	display: inline-block;
 }
-.movie{
-	height: 200px;
-	position: relative;
-	margin-bottom: 20px;
+.movie .thumbnail{
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom: transparent;
+	display: inline-block;
+	margin-bottom: 0;
 }
-.movie span{
+.movie div{
 	background-color: #1abc9c;
-	bottom: 0;
-	left: 0;
+	bottom: 0px;
 	overflow: hidden;
-	position: absolute;
 	line-height: 2em;
-	width: 100%;
 	text-align: center;
 }
 .views{
-	color: #34495e;
+	color: #bdc3c7;
 	font-size: 2em;
 }
 .views .active{
-	color: #bdc3c7;
+	color: #34495e;
+}
+.views span:hover{
+	color: #34495e;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 .space20{
-	margin: 20px 0;
+	padding: 20px 0;
+	width: 100%;
+}
+.space100{
+	padding: 100px 0;
 	width: 100%;
 }
