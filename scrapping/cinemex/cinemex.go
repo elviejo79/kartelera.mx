@@ -69,8 +69,10 @@ func extractMovies(url string) (res [][]string, err error) {
 	movies,_ := doc.Search("id('sch-cont')/div");
 	for _, m := range movies{ 
 		t := time.Now().Format("20060102")
+		title := strings.Replace(strings.ToUpper(nodeContent("div[@class='cinema']",m)),":","",-1) //title
+
 		row := []string{
-			strings.Replace(strings.ToUpper(nodeContent("div[@class='cinema']",m)),":","",-1) , //title
+			title,
 			nodeContent("div[@style='width:35px;']",m), //rating
 			nodeContent("div[3]",m), //language
 			nodeContent("div/img/@src",m), //roomType

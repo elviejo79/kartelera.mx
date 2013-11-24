@@ -103,11 +103,15 @@ func extractMovies(url string) (res [][]string, err error) {
 		} else if strings.Contains(titulo," XE") {
 			titulo=titulo[:strings.Index(titulo," XE ")]
 			sala = "XE"
-		} else {
+		} else if strings.Contains(titulo," Dig ") {
 			titulo=titulo[:strings.Index(titulo," Dig ")]
 			sala = "Dig"
+		} else {
+			//titulo=titulo
+			sala = "--"
 		}
 		titulo = strings.ToUpper(titulo)
+		titulo = strings.Replace(titulo,":","", -1)
 		t := time.Now().Format("20060102")
 		
 		row := []string{
