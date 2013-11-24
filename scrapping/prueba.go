@@ -1,8 +1,9 @@
-package controllers
+package main
 
 import (
         "database/sql"
         _ "github.com/mattn/go-sqlite3"
+	"fmt"
         "log"
 )
 
@@ -18,6 +19,10 @@ type Film struct {
      RoomType	 string	
      Date	 string	
      Time	 string	
+}
+
+func main(){
+     GetFilms()
 }
 
 func GetFilms() []Film {
@@ -49,6 +54,7 @@ func GetFilms() []Film {
 
      	 rows.Scan(&cine, &edo, &col, &cineId, &cineName, &title, &rating, &language, &roomType, &date, &time)
  	 f := Film{cine, edo, col, cineId, cineName, title, rating, language, roomType, date, time}
+	 fmt.Print(f)
 	 funciones = append(funciones, f)
      }
      rows.Close()

@@ -6,9 +6,14 @@ type App struct {
 	*revel.Controller
 }
 
-func (c App) Index() revel.Result {
-     films := GetFilms()
-     return c.Render(films)
+func (c App) Index(edo string) revel.Result {
+     films := GetTitlesByEdo(edo)
+     horarios := GetFilmsByEdo(edo)
+     horariosByFilm := make(map [string][]Film)
+     for _, horario := range horarios{
+     	 horariosByFilm[horario.Title] = append(horariosByFilm[horario.Title], horario)
+     }
+     return c.Render(films, horariosByFilm)
 }
 
 func (c App) Lista(edo string) revel.Result{

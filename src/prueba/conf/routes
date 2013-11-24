@@ -4,8 +4,8 @@
 
 module:testrunner
 
-GET     /:edo                                   App.Index
-GET	/:edo/horarios				App.Lista
+GET     /                                       App.Index
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
