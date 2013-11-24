@@ -27,6 +27,11 @@ body{
 	border-radius: 50%;
 	margin-left: 15 px;
 }
+.lista{
+	width: 100%;
+	position: relative;
+	min-height: 1px;
+}
 .movie .thumbnail{
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
@@ -62,9 +67,10 @@ body{
 	transition: all 0.2s ease-in-out;
 }
 .slider{
-	overflow-x: scroll hidden;
+	display: block;
 	overflow-y: hidden;
 	white-space: nowrap;
+	min-height: 1px;
 	height: 10em;
 }
 .slider::-webkit-scrollbar{
