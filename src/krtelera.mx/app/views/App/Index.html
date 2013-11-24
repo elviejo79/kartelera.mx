@@ -52,7 +52,6 @@
     {{range .films}}
 	{{$funciones := index $horariosByFilm .Title}}
         {{$film := .}}
-        <h1><a name="{{.Title}}">{{.Title}}</a></h1>
         {{template "despliegaFilms" $funciones}}	
     {{end}}
 
