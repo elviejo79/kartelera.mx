@@ -81,13 +81,18 @@ func extractMovies(url string) (res [][]string, err error) {
 	for _, m := range movies{ 
 		t := time.Now().Format("20060102")
 		title := strings.Replace(strings.ToUpper(nodeContent("div[@class='cinema']",m)),":","",-1) //title
+		roomType := nodeContent("div/img/@src",m) //roomType
+		roomType = strings.Replace(roomType,"/visual/imgs/icon-sch-cinemex.gif","",-1)
+		roomType = strings.Replace(roomType,"/visual/imgs/icon-sch-platino.gif","PLA",-1)
+		roomType = strings.Replace(roomType,"/visual/imgs/btn_premium.jpg","PREM",-1)
+		roomType = "R"+roomType
 
 		row := []string{
 			title,
 			nodeContent("a/img/@src",m), //img
 			nodeContent("div[@style='width:35px;']",m), //rating
 			nodeContent("div[3]",m), //language
-			nodeContent("div/img/@src",m), //roomType
+			roomType,
 			t, //nodeContent("div[6]/div/p[1]|div[6]/p[1]",m), //date
 		}
 

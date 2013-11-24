@@ -108,8 +108,9 @@ func extractMovies(url string) (res [][]string, err error) {
 			sala = "Dig"
 		} else {
 			//titulo=titulo
-			sala = "--"
+			sala = ""
 		}
+		sala = "R"+sala
 		titulo = strings.ToUpper(titulo)
 		titulo = strings.Replace(titulo,":","", -1)
 		t := time.Now().Format("20060102")
