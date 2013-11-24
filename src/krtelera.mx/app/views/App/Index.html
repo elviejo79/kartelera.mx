@@ -41,7 +41,11 @@
         <div class="row">
           {{range .films}}
 	    <div class="col-xs-6 col-sm-3 col-md-2 movie">
-                <img class="img-responsive thumbnail" src="{{.Img}}">
+              {{if .Img }}  
+	        <img class="img-responsive thumbnail" src="{{.Img}}">
+	      {{else}}
+	        <img class="img-responsive thumbnail" src="http://placehold.it/115x169">
+	      {{end}}
                 <div class="tituloC"><a href="#{{.Title}}">{{.Title}}</a></div>
             </div>
 	  {{end}}
