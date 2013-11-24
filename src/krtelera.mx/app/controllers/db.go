@@ -8,6 +8,8 @@ import (
 //        "os"
 )
 
+const dataBase string = "/home/user/Documents/code/github/kartelera.mx/src/krtelera.mx/app/controllers/foo.db"
+
 type Film struct {
      Cine 	 string	
      Edo	 string	
@@ -15,6 +17,7 @@ type Film struct {
      CineId	 string	
      CineName	 string	
      Title	 string	
+     Img	 string
      Rating	 string	
      Language	 string	
      RoomType	 string	
@@ -22,13 +25,19 @@ type Film struct {
      Time	 string	
 }
 
+type Titles struct{
+     Title string
+     Img   string
+}
+
+
 func GetFilms() []Film {
-     db, err := sql.Open("sqlite3", "./foo.db")
+     db, err := sql.Open("sqlite3", dataBase)
      if err != nil {
      	log.Fatal(err)
      }
      defer db.Close()
-     rows, err := db.Query("select cine, edo, col, cineId, cineName, title, rating, language, roomType, date, time from funciones")
+     rows, err := db.Query("select cine, edo, col, cineId, cineName, title, img, rating, language, roomType, date, time from funciones")
      if err != nil {
           log.Fatal(err)
      }
@@ -45,12 +54,13 @@ func GetFilms() []Film {
 	 var language string
 	 var rating string
 	 var title string
+	 var img string
 	 var cineName string
 	 var cineId string
 	 var col string
 
-     	 rows.Scan(&cine, &edo, &col, &cineId, &cineName, &title, &rating, &language, &roomType, &date, &time)
- 	 f := Film{cine, edo, col, cineId, cineName, title, rating, language, roomType, date, time}
+     	 rows.Scan(&cine, &edo, &col, &cineId, &cineName, &title, &img, &rating, &language, &roomType, &date, &time)
+ 	 f := Film{cine, edo, col, cineId, cineName, title, img, rating, language, roomType, date, time}
 	 funciones = append(funciones, f)
      }
      rows.Close()
@@ -58,12 +68,12 @@ func GetFilms() []Film {
 }
 
 func GetFilmsByEdo(state string) []Film {
-     db, err := sql.Open("sqlite3", "./foo.db")
+     db, err := sql.Open("sqlite3", dataBase)
      if err != nil {
      	log.Fatal(err)
      }
      defer db.Close()
-     stmt, err := db.Prepare("select cine, edo, col, cineId, cineName, title, rating, language, roomType, date, time from funciones where edo = ?")
+     stmt, err := db.Prepare("select cine, edo, col, cineId, cineName, title, img, rating, language, roomType, date, time from funciones where edo = ? order by title, time")
      if err != nil {
           log.Fatal(err)
      }
@@ -82,11 +92,40 @@ func GetFilmsByEdo(state string) []Film {
 	 var language string
 	 var rating string
 	 var title string
+	 var img string
 	 var cineName string
 	 var cineId string
 	 var col string
-	 rows.Scan(&cine, &edo, &col, &cineId, &cineName, &title, &rating, &language, &roomType, &date, &time)
-	 f := Film{cine, edo, col, cineId, cineName, title, rating, language, roomType, date, time}
+	 rows.Scan(&cine, &edo, &col, &cineId, &cineName, &title, &img, &rating, &language, &roomType, &date, &time)
+	 f := Film{cine, edo, col, cineId, cineName, title, img, rating, language, roomType, date, time}
+	 funciones = append(funciones, f)
+     }
+     stmt.Close()
+     return funciones
+}
+
+
+func GetTitlesByEdo(state string) []Titles {
+     db, err := sql.Open("sqlite3", dataBase)
+     if err != nil {
+     	log.Fatal(err)
+     }
+     defer db.Close()
+     stmt, err := db.Prepare("select title, img from funciones where edo = ? group by title")
+     if err != nil {
+          log.Fatal(err)
+     }
+     defer stmt.Close()
+     var funciones []Titles
+     rows, err := stmt.Query(state)
+          if err != nil {
+          log.Fatal(err)
+     }
+     for rows.Next(){
+	 var title string
+	 var img string
+	 rows.Scan(&title, &img)
+	 f := Titles{title, img}
 	 funciones = append(funciones, f)
      }
      stmt.Close()

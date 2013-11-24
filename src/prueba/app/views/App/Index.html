@@ -41,23 +41,18 @@
         <div class="row">
           {{range .films}}
 	    <div class="col-xs-6 col-sm-4 col-md-3 movie">
-                <img class="img-responsive thumbnail" src="{{.Img}}">
-                <div class="tituloC"><a href="#{{.Title}}">{{.Title}}</a></div>
+                <img class="img-responsive thumbnail" src="http://hungergamesmovie.org/images/jennifer-lawrence-glamour-uk-april-2012-05.jpg">
+                <div class="tituloC">{{.Title}}</div>
             </div>
 	  {{end}}
         </div>
     </div>
     <!-- /.container -->
-    {{$horariosByFilm := .horariosByFilm}}
-    {{range .films}}
-	{{$funciones := index $horariosByFilm .Title}}
-        {{$film := .}}
-        <h1><a name="{{.Title}}">{{.Title}}</a></h1>
-        {{template "despliegaFilms" $funciones}}	
-    {{end}}
+
 
     <!-- Load JS here for greater good =============================-->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
+
