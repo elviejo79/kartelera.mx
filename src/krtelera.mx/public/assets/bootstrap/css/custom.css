@@ -13,6 +13,9 @@ body{
 	color: #34495e;
 	font-size: 3em;
 }
+.img-responsive{
+	width: 100%;
+}
 .info div{
 	display: inline-block;
 }
@@ -49,6 +52,7 @@ body{
 	overflow: hidden;
 	line-height: 2em;
 	text-align: center;
+	height: 6em;
 }
 .views{
 	color: #bdc3c7;
@@ -120,4 +124,8 @@ body{
 .space100{
 	padding: 10em 0;
 	width: 100%;
+}
+.tituloC a{
+	color: #FFFFFF;
+	font-size: 1.5em;
 }
