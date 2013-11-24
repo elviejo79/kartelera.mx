@@ -34,13 +34,13 @@ func Screenings() (result []map[string]string){
 					"cineId": m[0], 
 					"cineName":m[1], 
 					"title": m[2], 
-					"rating": m[3] , 
-					"language": m[4], 
-					"roomType": m[5], 
-					"date": m[6], 
-					"time":m[7]})
+					"img": m[3],
+					"rating": m[4] , 
+					"language": m[5], 
+					"roomType": m[6], 
+					"date": m[7], 
+					"time":m[8],})
 			}
-
 		}
 	}
 
@@ -118,6 +118,7 @@ func extractMovies(url string) (res [][]string, err error) {
 			cineId, //cineID
 			nodeContent("//select[@name='cartelera"+cineId+"']/parent::*/parent::*/parent::*//span[@class='TitulosBlanco']",m),
 			titulo,
+			nodeContent("parent::*/parent::*/parent::*//img[@width='61']/@src",m), //img poster
 			nodeContent("parent::*//span[@class='textoPequeñoNegro']",m),
 			subtitulos,
 			sala,
@@ -126,7 +127,6 @@ func extractMovies(url string) (res [][]string, err error) {
 			nodeContent("div[6]/div/p[1]|div[6]/p[1]",m),
 */		
 		}
-
 		hours,err := m.Search("parent::*/parent::*//*[contains(@class,'horariosCartelera')]")
 		if err != nil {
 			fmt.Println(err)

@@ -22,7 +22,18 @@ func Screenings() (result []map[string]string){
 		movies, _ := extractMovies("http://cinemex.com.mx/cines/"+t.id)
 		for _,m := range movies {
 			result = append(result, map[string]string{
-				"cine":"cinemex" , "edo": t.city, "col":t.col , "cineId": t.id, "cineName":t.name, "title": m[0], "rating": m[1] , "language": m[2], "roomType": m[3], "date": m[4], "time":m[5]})
+				"cine":"cinemex" , 
+				"edo": t.city, 
+				"col":t.col , 
+				"cineId": t.id, 
+				"cineName":t.name, 
+				"title": m[0], 
+				"img": m[1], 
+				"rating": m[2] , 
+				"language": m[3], 
+				"roomType": m[4], 
+				"date": m[5], 
+				"time":m[6],})
 		}
 
 	}
@@ -73,6 +84,7 @@ func extractMovies(url string) (res [][]string, err error) {
 
 		row := []string{
 			title,
+			nodeContent("a/img/@src",m), //img
 			nodeContent("div[@style='width:35px;']",m), //rating
 			nodeContent("div[3]",m), //language
 			nodeContent("div/img/@src",m), //roomType

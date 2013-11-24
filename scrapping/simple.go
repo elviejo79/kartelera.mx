@@ -20,7 +20,7 @@ func main() {
 	defer db.Close()
 
 	sql := `
-	create table funciones (id integer not null primary key autoincrement, cine text, edo text, col text, cineId text, cineName text, title text, rating text, language text, roomType text, date text, time text);
+	create table funciones (id integer not null primary key autoincrement, cine text, edo text, col text, cineId text, cineName text, title text, img text, rating text, language text, roomType text, date text, time text);
 	`
 	_, err = db.Exec(sql)
 	if err != nil {
@@ -32,7 +32,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	stmt, err := tx.Prepare("insert into funciones(cine , edo , col , cineId, cineName , title , rating , language , roomType , date , time) values(? , ? , ? , ?, ? , ? , ? , ? , ? , ? , ?)")
+	stmt, err := tx.Prepare("insert into funciones(cine , edo , col , cineId, cineName , title , img, rating , language , roomType , date , time) values(? , ? , ? , ?, ? , ? , ? , ? , ? , ? , ?, ?)")
 		if err != nil {
 		log.Fatal(err)
 	}
@@ -40,7 +40,7 @@ func main() {
 
 	for _,screening := range cinemex.Screenings() {
 		fmt.Print("mx.")
-		bla,err := stmt.Exec(screening["cine"], screening["edo"] , screening["col"] , screening["cineId"], screening["cineName"] , screening["title"] , screening["rating"] , screening["language"] , screening["roomType"] , screening["date"] , screening["time"])
+		bla,err := stmt.Exec(screening["cine"], screening["edo"] , screening["col"] , screening["cineId"], screening["cineName"] , screening["title"], screening["img"] , screening["rating"] , screening["language"] , screening["roomType"] , screening["date"] , screening["time"])
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -49,7 +49,7 @@ func main() {
 
 	for _,screening := range cinepolis.Screenings() {
 		fmt.Print("pl.")
-		bla,err := stmt.Exec(screening["cine"], screening["edo"] , screening["col"] , screening["cineId"], screening["cineName"] , screening["title"] , screening["rating"] , screening["language"] , screening["roomType"] , screening["date"] , screening["time"])
+		bla,err := stmt.Exec(screening["cine"], screening["edo"] , screening["col"] , screening["cineId"], screening["cineName"] , screening["title"] , screening["img"], screening["rating"] , screening["language"] , screening["roomType"] , screening["date"] , screening["time"])
 		if err != nil {
 			fmt.Println(err)
 		}
