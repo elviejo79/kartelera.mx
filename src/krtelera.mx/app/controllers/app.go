@@ -11,6 +11,7 @@ func (c App) Index() revel.Result {
      return c.Render(films)
 }
 
-func (c App) Hello(myName string) revel.Result{
-     return c.Render(myName)
+func (c App) Lista(edo string) revel.Result{
+     films := GetFilmsByEdo(edo)
+     return c.Render(films)
 }
