@@ -42,9 +42,9 @@
           {{range .films}}
 	    <div class="col-xs-6 col-sm-3 col-md-2 movie">
               {{if .Img }}  
-	        <img class="img-responsive thumbnail" src="{{.Img}}">
+	       <a href="#{{.Title}}"><img class="img-responsive thumbnail" src="{{.Img}}"></a>
 	      {{else}}
-	        <img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg">
+	        <a href="#{{.Title}}"><img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg"></a>
 	      {{end}}
                 <div class="tituloC"><a href="#{{.Title}}">{{.Title}}</a></div>
             </div>
