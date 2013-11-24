@@ -40,8 +40,12 @@
         <div class="space100">
         <div class="row">
           {{range .films}}
-	    <div class="col-xs-6 col-sm-4 col-md-3 movie">
-                <img class="img-responsive thumbnail" src="{{.Img}}">
+	    <div class="col-xs-6 col-sm-3 col-md-2 movie">
+              {{if .Img }}  
+	       <a href="#{{.Title}}"><img class="img-responsive thumbnail" src="{{.Img}}"></a>
+	      {{else}}
+	        <a href="#{{.Title}}"><img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg"></a>
+	      {{end}}
                 <div class="tituloC"><a href="#{{.Title}}">{{.Title}}</a></div>
             </div>
 	  {{end}}

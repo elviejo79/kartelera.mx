@@ -6,7 +6,11 @@
             <div class="row">
                 <div class="info">
                     <div class="col-xs-2 col-sm-2 col-md-2">
-                        <img class="img-responsive thumbnail" src="{{$first.Img}}">
+		      {{if $first.Img}}
+		      <img class="img-responsive thumbnail" src="{{$first.Img}}">
+		      {{else}}
+		      <img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg">
+		      {{end}}
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10">
                         <a name = "{{$first.Title}}"><span class="titulo">{{$first.Title}}</span></a><br />
@@ -19,7 +23,7 @@
 		  {{range .}}
 		    <div class="date" id = "horario1">
                         <p class="hora {{.Language}} {{.RoomType}}" title="{{.CineName}}">{{.Time}}</p>
-                        <img class="img-responsive" src="/public/img/{{.Cine}}.png">
+			<img src="/public/img/{{.Cine}}.png">
                     </div>
 		  {{end}}
                 </div>
