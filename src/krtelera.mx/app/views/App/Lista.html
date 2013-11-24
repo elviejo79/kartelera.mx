@@ -9,7 +9,7 @@
 		      {{if $first.Img}}
 		      <img class="img-responsive thumbnail" src="{{$first.Img}}">
 		      {{else}}
-		      <img class="img-responsive thumbnail" src="http://placehold.it/115x169">
+		      <img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg">
 		      {{end}}
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10">
@@ -23,7 +23,7 @@
 		  {{range .}}
 		    <div class="date" id = "horario1">
                         <p class="hora {{.Language}} {{.RoomType}}" title="{{.CineName}}">{{.Time}}</p>
-			<img class="img-responsive" src="/public/img/{{.Cine}}.png">
+			<img src="/public/img/{{.Cine}}.png">
                     </div>
 		  {{end}}
                 </div>
