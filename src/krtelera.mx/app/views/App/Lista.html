@@ -1,9 +1,13 @@
 {{define "despliegaFilms"}}
-   {{$first := index . 0}}
-   <div class="container">
-        <div class="space100">
-        <article class="lista">
-            <div class="row">
+{{$first := index . 0}}
+<div class="container">
+  <div class="space100">
+    <article class="lista">
+      <div class="row">
+	<a name = "{{$first.Title}}"><br/></a>
+	<hr/>
+
+	<p></p><br/>
                 <div class="info">
                     <div class="col-xs-2 col-sm-2 col-md-2">
 		      {{if $first.Img}}
@@ -12,22 +16,25 @@
 		      <img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg">
 		      {{end}}
                     </div>
+
                     <div class="col-xs-10 col-sm-10 col-md-10">
-                        <a name = "{{$first.Title}}"><span class="titulo">{{$first.Title}}</span></a><br />
-                        <span class="clasificacion">Clasifiación: {{$first.Rating}}</span>
+                      <span class="titulo">{{$first.Title}}</span><br />
+                      <span class="clasificacion">Clasifiación: {{$first.Rating}}</span>
+		      <div class="col-xs-12 col-sm-12 col-md-12 slider">
+			{{range .}}
+			<div class="date" id = "horario1">
+                          <p class="hora {{.Language}} {{.RoomType}}" title="{{.CineName}}">{{.Time}}</p>
+			  <img src="/public/img/{{.Cine}}.png">
+			</div>
+			{{end}}
+                      </div>
+	      	    <a href="#Top"><button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-chevron-up"></span>TOP</button></a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 slider">
-		  {{range .}}
-		    <div class="date" id = "horario1">
-                        <p class="hora {{.Language}} {{.RoomType}}" title="{{.CineName}}">{{.Time}}</p>
-			<img src="/public/img/{{.Cine}}.png">
-                    </div>
-		  {{end}}
-                </div>
             </div>
+
             <div class="row">
                 <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos1">
                     <ul>
