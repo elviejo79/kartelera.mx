@@ -3,6 +3,8 @@ package cinemex
 
 import(
 	"io/ioutil"
+	"strings"
+	"time"
 	"fmt"
 	"github.com/moovweb/gokogiri"
 //	"github.com/moovweb/gokogiri/html"
@@ -46,10 +48,12 @@ func extractTheaters(url string) (result []cine) {
 	}
 
 	for c,_ := range cities {
-		url := fmt.Sprintf("http://cinemex.com.mx/getddCines.php?ciudad=%d&movieId=",c)
-		json_cines,_ := getBody(url)
-		theaters, _ := theaters_json_decoder(json_cines,cities[c])
-		result = append(result,theaters...)
+		if c == 1 || c == 62 || c == 73 {
+			url := fmt.Sprintf("http://cinemex.com.mx/getddCines.php?ciudad=%d&movieId=",c)
+			json_cines,_ := getBody(url)
+			theaters, _ := theaters_json_decoder(json_cines,cities[c])
+			result = append(result,theaters...)
+		}
 	}
 	return result
 }
@@ -64,12 +68,13 @@ func extractMovies(url string) (res [][]string, err error) {
 	defer doc.Free()
 	movies,_ := doc.Search("id('sch-cont')/div");
 	for _, m := range movies{ 
+		t := time.Now().Format("20060102")
 		row := []string{
-			nodeContent("div[@class='cinema']",m),
-			nodeContent("div[@style='width:35px;']",m),
-			nodeContent("div[3]",m),
-			nodeContent("div/img/@src",m),
-			nodeContent("div[6]/div/p[1]|div[6]/p[1]",m),
+			strings.Replace(strings.ToUpper(nodeContent("div[@class='cinema']",m)),":","",-1) , //title
+			nodeContent("div[@style='width:35px;']",m), //rating
+			nodeContent("div[3]",m), //language
+			nodeContent("div/img/@src",m), //roomType
+			t, //nodeContent("div[6]/div/p[1]|div[6]/p[1]",m), //date
 		}
 
 		hours,_ := m.Search("div[6]/div/a")

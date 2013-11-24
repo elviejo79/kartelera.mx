@@ -6,7 +6,8 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"os"
-	"./scrapping/"
+	"./cinemex"
+	"./cinepolis"
 )
 
 func main() {
@@ -37,13 +38,22 @@ func main() {
 	}
 	defer stmt.Close()
 	for _,screening := range cinemex.Screenings() {
-		fmt.Printf("%#v",screening)
+		fmt.Print("mx.")
 		bla,err := stmt.Exec(screening["cine"], screening["edo"] , screening["col"] , screening["cineId"], screening["cineName"] , screening["title"] , screening["rating"] , screening["language"] , screening["roomType"] , screening["date"] , screening["time"])
 		if err != nil {
 			fmt.Println(err)
 		}
 		fmt.Printf("%#v",bla)
 	}
+	for _,screening := range cinepolis.Screenings() {
+		fmt.Print("pl.")
+		bla,err := stmt.Exec(screening["cine"], screening["edo"] , screening["col"] , screening["cineId"], screening["cineName"] , screening["title"] , screening["rating"] , screening["language"] , screening["roomType"] , screening["date"] , screening["time"])
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("%#v",bla)
+	}
+
 	tx.Commit()
 
 /*	rows, err := db.Query("select id, name from foo")
