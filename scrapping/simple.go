@@ -8,12 +8,18 @@ import (
 	"os"
 	"./cinemex"
 	"./cinepolis"
+	"bitbucket.org/kardianos/osext"
 )
 
 func main() {
-	os.Remove("foo.db")
+	filename, _ := osext.ExecutableFolder()
+	cines_db := filename + "foo.db"
+	
+	fmt.Println(cines_db)
 
-	db, err := sql.Open("sqlite3", "foo.db")
+	os.Remove(cines_db)
+
+	db, err := sql.Open("sqlite3",cines_db)
 	if err != nil {
 		log.Fatal(err)
 	}
