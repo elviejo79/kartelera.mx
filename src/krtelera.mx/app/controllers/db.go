@@ -8,7 +8,7 @@ import (
 //        "os"
 )
 
-const dataBase string = "/home/user/Documents/code/github/kartelera.mx/scrapping/foo.db"
+const dataBase string = "/home/user/Documents/code/github/kartelera.mx/scrapping/funciones.db"
 
 type Film struct {
      Cine 	 string	
