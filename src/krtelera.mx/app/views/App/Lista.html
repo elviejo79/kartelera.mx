@@ -21,13 +21,15 @@
                       <span class="titulo">{{$first.Title}}</span><br />
                       <span class="clasificacion">Clasifiación: {{$first.Rating}}</span>
 		      <div class="col-xs-12 col-sm-12 col-md-12 slider">
-			{{range .}}
-			<div class="date" id = "horario1">
-                          <p class="hora {{.Language}} {{.RoomType}}" title="{{.CineName}}">{{.Time}}</p>
-			  <img src="/public/img/{{.Cine}}.png">
-			</div>
-			{{end}}
-                      </div>
+                        <div>
+                          <ol>
+                            {{range .}}
+                            <li><span class="hora {{.Language}} {{.RoomType}}">{{.Time}}</span>
+                              <p> {{.Language}} {{.RoomType}} <img src="/public/img/{{.Cine}}.png"> {{.CineName}}</p></li>
+                            {{end}}
+                          </ol>
+                        </div>
+
 	      	    <a href="#Top"><button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-chevron-up"></span>TOP</button></a>
                     </div>
                 </div>
