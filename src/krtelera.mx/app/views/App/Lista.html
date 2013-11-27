@@ -1,12 +1,4 @@
 {{define "despliegaFilms"}}
-<<<<<<< HEAD
-   {{$first := index . 0}}
-   <div class="container">
-        <div class="space100">
-        <hr>
-        <article class="lista">
-            <div class="row">
-=======
 {{$first := index . 0}}
 <div class="container">
   <div class="space100">
@@ -14,113 +6,35 @@
       <div class="row">
 	<a name = "{{$first.Title}}"><br/></a>
 	<hr/>
-
 	<p></p><br/>
->>>>>>> 3d82f0093520b1e4b14cae94359e669a887f10bc
-                <div class="info">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-		      {{if $first.Img}}
-		      <img class="img-responsive thumbnail" src="{{$first.Img}}">
-		      {{else}}
-		      <img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg">
-		      {{end}}
-                    </div>
+        <div class="info">
+          <div class="col-xs-2 col-sm-2 col-md-2">
+	    {{if $first.Img}}
+	    <img class="img-responsive thumbnail" src="{{$first.Img}}">
+	    {{else}}
+	    <img class="img-responsive thumbnail" src="http://i.imgur.com/tbDecbt.jpg">
+	    {{end}}
+          </div>
 
-                    <div class="col-xs-10 col-sm-10 col-md-10">
-                      <span class="titulo">{{$first.Title}}</span><br />
-                      <span class="clasificacion">Clasifiación: {{$first.Rating}}</span>
-		      <div class="col-xs-12 col-sm-12 col-md-12 slider">
-                        <div>
-                          <ol>
-                            {{range .}}
-                            <li><span class="hora {{.Language}} {{.RoomType}}">{{.Time}}</span>
-                              <p> {{.Language}} {{.RoomType}} <img src="/public/img/{{.Cine}}.png"> {{.CineName}}</p></li>
-                            {{end}}
-                          </ol>
-                        </div>
-
-	      	    <a href="#Top"><button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-chevron-up"></span>TOP</button></a>
-                    </div>
-                </div>
+          <div class="col-xs-10 col-sm-10 col-md-10">
+            <span class="titulo">{{$first.Title}}</span><br />
+            <span class="clasificacion">Clasifiación: {{$first.Rating}}</span>
+	    <div class="col-xs-12 col-sm-12 col-md-12 slider">
+              <div>
+                <ol>
+                  {{range .}}
+                  <li><span class="hora {{.Language}} {{.RoomType}}">{{.Time}}</span>
+                    <p> {{.Language}} {{.RoomType}} <img src="/public/img/{{.Cine}}.png"> {{.CineName}}</p></li>
+                  {{end}}
+              </div>
+	      <a href="#Top"><button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-chevron-up"></span>TOP</button></a>
             </div>
-            <div class="row">
-            </div>
-
-            <div class="row">
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos1">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                        <li>Complejo C</li>
-                        <li>Complejo D</li>
-                        <li>Complejo E</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos2">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                        <li>Complejo C</li>
-                        <li>Complejo D</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos3">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                        <li>Complejo C</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos4">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos5">
-                    <ul>
-                        <li>Complejo A</li>
-
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos6">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos7">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                        <li>Complejo C</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos8">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                        <li>Complejo C</li>
-                        <li>Complejo D</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos9">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                        <li>Complejo C</li>
-                    </ul>
-                </div>
-                <div class = "col-xs-12 col-sm-12 col-md-12 complejos" id = "complejos10">
-                    <ul>
-                        <li>Complejo A</li>
-                        <li>Complejo B</li>
-                    </ul>
-                </div>
-            </div>
-        </article>
+          </div>
         </div>
-    </div>
+        <div class="row"></div>
+      </div>
+    </article>
+  </div>
+</div>
     <!-- /.container -->
 {{end}}
